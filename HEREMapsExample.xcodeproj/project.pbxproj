@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,7 +46,6 @@
 				AD5291A87D49A7B7745DD167 /* Pods-HEREMapsExample.debug.xcconfig */,
 				3AAE248BD8A1C9BC2383138B /* Pods-HEREMapsExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -356,7 +355,7 @@
 				DEVELOPMENT_TEAM = FW5YV3C8HR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/framework",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HEREMapsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -379,7 +378,7 @@
 				DEVELOPMENT_TEAM = FW5YV3C8HR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/framework",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HEREMapsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
