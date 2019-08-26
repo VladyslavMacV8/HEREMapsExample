@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import NMAKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        NMAApplicationContext.setAppId(Constants.appId, appCode: Constants.appCode, licenseKey: Constants.licenseKey)
+        NMAPositioningManager.sharedInstance().startPositioning()
+
         return true
     }
 

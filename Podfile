@@ -5,6 +5,6 @@ target 'HEREMapsExample' do
   
   use_frameworks!
 
-  pod 'HEREMapsStarter' 
+  pod 'HEREMaps' 
 
 end

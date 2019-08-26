@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43676FBD2313028A001CBB03 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43676FBC2313028A001CBB03 /* UIViewExtension.swift */; };
+		43676FC3231302FE001CBB03 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43676FC2231302FE001CBB03 /* MainView.swift */; };
+		43676FC523130306001CBB03 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43676FC423130306001CBB03 /* MainView.xib */; };
+		43676FC8231326AD001CBB03 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43676FC7231326AD001CBB03 /* ViewModel.swift */; };
+		4390F5472313A59B00D87FFE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390F5462313A59B00D87FFE /* Constants.swift */; };
 		43F27E582312EDC80068A5A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F27E572312EDC80068A5A1 /* AppDelegate.swift */; };
 		43F27E5A2312EDC80068A5A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F27E592312EDC80068A5A1 /* ViewController.swift */; };
 		43F27E5D2312EDC80068A5A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43F27E5B2312EDC80068A5A1 /* Main.storyboard */; };
@@ -17,6 +22,11 @@
 
 /* Begin PBXFileReference section */
 		3AAE248BD8A1C9BC2383138B /* Pods-HEREMapsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEREMapsExample.release.xcconfig"; path = "Target Support Files/Pods-HEREMapsExample/Pods-HEREMapsExample.release.xcconfig"; sourceTree = "<group>"; };
+		43676FBC2313028A001CBB03 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		43676FC2231302FE001CBB03 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		43676FC423130306001CBB03 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		43676FC7231326AD001CBB03 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		4390F5462313A59B00D87FFE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43F27E542312EDC80068A5A1 /* HEREMapsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HEREMapsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F27E572312EDC80068A5A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43F27E592312EDC80068A5A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +59,49 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		43676FBE231302A8001CBB03 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				43676FC2231302FE001CBB03 /* MainView.swift */,
+				43676FC423130306001CBB03 /* MainView.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		43676FBF231302B9001CBB03 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				43676FC0231302C2001CBB03 /* Controllers */,
+				43676FBE231302A8001CBB03 /* Components */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		43676FC0231302C2001CBB03 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				43F27E592312EDC80068A5A1 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		43676FC1231302D4001CBB03 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				43676FBC2313028A001CBB03 /* UIViewExtension.swift */,
+				4390F5462313A59B00D87FFE /* Constants.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		43676FC62313269D001CBB03 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				43676FC7231326AD001CBB03 /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		43F27E4B2312EDC80068A5A1 = {
 			isa = PBXGroup;
 			children = (
@@ -70,8 +123,10 @@
 		43F27E562312EDC80068A5A1 /* HEREMapsExample */ = {
 			isa = PBXGroup;
 			children = (
+				43676FC62313269D001CBB03 /* ViewModel */,
+				43676FC1231302D4001CBB03 /* Other */,
+				43676FBF231302B9001CBB03 /* UI */,
 				43F27E572312EDC80068A5A1 /* AppDelegate.swift */,
-				43F27E592312EDC80068A5A1 /* ViewController.swift */,
 				43F27E5B2312EDC80068A5A1 /* Main.storyboard */,
 				43F27E5E2312EDC90068A5A1 /* Assets.xcassets */,
 				43F27E602312EDC90068A5A1 /* LaunchScreen.storyboard */,
@@ -149,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F27E622312EDC90068A5A1 /* LaunchScreen.storyboard in Resources */,
+				43676FC523130306001CBB03 /* MainView.xib in Resources */,
 				43F27E5F2312EDC90068A5A1 /* Assets.xcassets in Resources */,
 				43F27E5D2312EDC80068A5A1 /* Main.storyboard in Resources */,
 			);
@@ -203,8 +259,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43676FC8231326AD001CBB03 /* ViewModel.swift in Sources */,
+				43676FBD2313028A001CBB03 /* UIViewExtension.swift in Sources */,
+				43676FC3231302FE001CBB03 /* MainView.swift in Sources */,
 				43F27E5A2312EDC80068A5A1 /* ViewController.swift in Sources */,
 				43F27E582312EDC80068A5A1 /* AppDelegate.swift in Sources */,
+				4390F5472313A59B00D87FFE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
