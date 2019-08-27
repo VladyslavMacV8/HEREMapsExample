@@ -91,6 +91,7 @@ final class MainView: UIView, NibLoadable {
         
         viewModel?.configRoute(text: text, completion: { [weak self] in
             self?.tableView.reloadData()
+            self?.tableView.isHidden = false
             self?.activityView.stopAnimating()
         })
     }
@@ -102,6 +103,7 @@ extension MainView: UITextFieldDelegate {
         if text.count > 1 {
             if !activityView.isAnimating {
                 activityView.startAnimating()
+                tableView.isHidden = true
             }
             throttle()
         } else {
@@ -135,10 +137,10 @@ extension MainView: UITableViewDataSource {
         switch state {
         case .done:
             let element = viewModel?.getRouteList[indexPath.row]
-            cell.textLabel?.text = "\(indexPath.row + 1)) \(element?.name ?? "")"
+            cell.textLabel?.text = "\(indexPath.row + 1)) \(element?.vicinityDescription ?? ""), \(element?.name ?? "")"
         default:
             let element = viewModel?.getPlaces[indexPath.row]
-            cell.textLabel?.text = element?.name
+            cell.textLabel?.text = "\(element?.vicinityDescription ?? ""), \(element?.name ?? "")"
         }
         
         return cell

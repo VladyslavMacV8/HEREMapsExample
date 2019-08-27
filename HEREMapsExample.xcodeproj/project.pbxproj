@@ -18,6 +18,7 @@
 		43F27E5F2312EDC90068A5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F27E5E2312EDC90068A5A1 /* Assets.xcassets */; };
 		43F27E622312EDC90068A5A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43F27E602312EDC90068A5A1 /* LaunchScreen.storyboard */; };
 		BDE7F44913D991AE55797070 /* Pods_HEREMapsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4B45FC544D779A16BF62C2 /* Pods_HEREMapsExample.framework */; };
+		FCDDB106231555E8006E96AB /* WaypointEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDDB105231555E8006E96AB /* WaypointEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		43F27E632312EDC90068A5A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD5291A87D49A7B7745DD167 /* Pods-HEREMapsExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEREMapsExample.debug.xcconfig"; path = "Target Support Files/Pods-HEREMapsExample/Pods-HEREMapsExample.debug.xcconfig"; sourceTree = "<group>"; };
 		BB4B45FC544D779A16BF62C2 /* Pods_HEREMapsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HEREMapsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCDDB105231555E8006E96AB /* WaypointEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		43F27E562312EDC80068A5A1 /* HEREMapsExample */ = {
 			isa = PBXGroup;
 			children = (
+				FCDDB104231555D1006E96AB /* Model */,
 				43676FC62313269D001CBB03 /* ViewModel */,
 				43676FC1231302D4001CBB03 /* Other */,
 				43676FBF231302B9001CBB03 /* UI */,
@@ -141,6 +144,14 @@
 				BB4B45FC544D779A16BF62C2 /* Pods_HEREMapsExample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FCDDB104231555D1006E96AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FCDDB105231555E8006E96AB /* WaypointEntity.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +275,7 @@
 				43676FC3231302FE001CBB03 /* MainView.swift in Sources */,
 				43F27E5A2312EDC80068A5A1 /* ViewController.swift in Sources */,
 				43F27E582312EDC80068A5A1 /* AppDelegate.swift in Sources */,
+				FCDDB106231555E8006E96AB /* WaypointEntity.swift in Sources */,
 				4390F5472313A59B00D87FFE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

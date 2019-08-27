@@ -9,7 +9,9 @@
 import Foundation
 
 struct Constants {
-
+    static let appId = ""
+    static let appCode = ""
+    static let licenseKey = ""
     
     static let firstAddress = "Enter first address"
     static let secondAddress = "Enter second address"

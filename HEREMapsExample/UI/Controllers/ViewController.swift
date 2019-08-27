@@ -19,7 +19,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ViewModel()
+        viewModel = ViewModel(mapView: mapView)
         setupViews()
         setupSignals()
         setupObserver()
@@ -67,8 +67,7 @@ final class ViewController: UIViewController {
         
         mainView.viewModel = viewModel
         mainView.startButtonClosure = { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.viewModel.createRoute(mapView: strongSelf.mapView)
+            self?.viewModel.createRoute()
         }
         mainView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mainView)
