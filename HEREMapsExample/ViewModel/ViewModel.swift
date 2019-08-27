@@ -101,6 +101,7 @@ final class ViewModel: NSObject, ViewModelType {
     
     func createRoute() {
         let mode = NMARoutingMode(routingType: .fastest, transportMode: .car, routingOptions: [])
+        waypoints.removeAll()
         var arrayOfCoordinates = [NMAGeoCoordinates]()
         var arrayOfMarkers = [NMAMapMarker]()
         for (index, place) in routeList.enumerated() {
@@ -147,7 +148,6 @@ final class ViewModel: NSObject, ViewModelType {
     private func removeRouteList() {
         queue.async(flags: .barrier) {
             self.routeList.removeAll()
-            self.waypoints.removeAll()
         }
     }
     
@@ -168,7 +168,7 @@ final class ViewModel: NSObject, ViewModelType {
     
     private func prepareAVSession() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, options: .defaultToSpeaker)
+            try AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         }
         catch  {
