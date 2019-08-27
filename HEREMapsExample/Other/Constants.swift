@@ -9,6 +9,8 @@
 import Foundation
 
 struct Constants {
+
+    
     static let firstAddress = "Enter first address"
     static let secondAddress = "Enter second address"
     static let thirdAddress = "Enter third address"

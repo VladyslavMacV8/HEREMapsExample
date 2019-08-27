@@ -9,8 +9,8 @@
 import NMAKit
 
 protocol ViewModelType: class {
-    var coordinates: NMAGeoCoordinates? { get }
-    var appStateClosure: ((AppState)->())? { get set }
+    var appState: AppState { get }
+    var appStateClosure: (()->())? { get set }
     var getPlaces: [NMAPlaceLink] { get }
     var getRouteList: [NMAPlaceLink] { get }
     var getMapObjects: [NMAMapObject] { get }
@@ -20,6 +20,7 @@ protocol ViewModelType: class {
     func removeAllData()
     func configRoute(text: String, completion: @escaping ()->())
     func createRoute(mapView: NMAMapView)
+    func trackMarkers(currentCoordinate: NMAGeoCoordinates)
 }
 
 final class ViewModel: NSObject, ViewModelType {
@@ -30,16 +31,14 @@ final class ViewModel: NSObject, ViewModelType {
     private var places: [NMAPlaceLink] = []
     private var routeList: [NMAPlaceLink] = []
     private var mapObjects: [NMAMapObject] = []
+    private var waypoints: [NMAWaypoint] = []
     
     private let queue = DispatchQueue(label: "SafeQueue", attributes: .concurrent)
     
     private let markerImage = UIImage(named: "marker")!
-    
-    var appStateClosure: ((AppState)->())?
-    
-    var coordinates: NMAGeoCoordinates? {
-        return NMAPositioningManager.sharedInstance().currentPosition?.coordinates
-    }
+
+    var appState: AppState = .config
+    var appStateClosure: (()->())?
     
     var getPlaces: [NMAPlaceLink] {
         var result: [NMAPlaceLink] = []
@@ -85,7 +84,7 @@ final class ViewModel: NSObject, ViewModelType {
     
     func configRoute(text: String, completion: @escaping ()->()) {
         removePlaces()
-        let request = NMAPlaces.sharedInstance()?.createSearchRequest(location: coordinates, query: text)
+        let request = NMAPlaces.sharedInstance()?.createSearchRequest(location: NMAPositioningManager.sharedInstance().currentPosition?.coordinates, query: text)
         request?.start { [weak self] _, data, _ in
             guard let page = data as? NMADiscoveryPage else { return }
             page.discoveryResults.forEach { link in
@@ -100,24 +99,35 @@ final class ViewModel: NSObject, ViewModelType {
         let mode = NMARoutingMode(routingType: .fastest, transportMode: .car, routingOptions: [])
         var arrayOfCoordinates = [NMAGeoCoordinates]()
         var arrayOfMarkers = [NMAMapMarker]()
-        routeList.forEach { place in
+        for (index, place) in routeList.enumerated() {
             guard let position = place.position else { return }
+            waypoints.append(NMAWaypoint(geoCoordinates: position, identifier: "\(index)", waypointDirection: .any, waypointType: .viaWaypoint))
             arrayOfCoordinates.append(position)
             arrayOfMarkers.append(NMAMapMarker(geoCoordinates: position, image: markerImage))
         }
         coreRouter.calculateRoute(withPoints: arrayOfCoordinates, routingMode: mode) { [weak self] result, _ in
             guard let route = result?.routes?.first, let mapRoute = NMAMapRoute(route) else { return }
+            
             mapRoute.traveledColor = .cyan
             mapRoute.color = .green
             mapRoute.outlineColor = .gray
-  
+            
             self?.resetMapObjects(arrayOfMarkers, with: mapRoute)
-            self?.appStateClosure?(.route)
+            self?.appState = .route
+            self?.appStateClosure?()
             self?.setupSimulation(mapView, route)
         }
     }
     
-    private func resetMapObjects(_ array: [NMAMapObject], with object: NMAMapObject) {
+    func trackMarkers(currentCoordinate: NMAGeoCoordinates) {
+        waypoints.forEach { waypoint in
+            if waypoint.originalPosition.distance(to: currentCoordinate) < 15 {
+                
+            }
+        }
+    }
+    
+    private func resetMapObjects(_ array: [NMAMapMarker], with object: NMAMapRoute) {
         queue.async(flags: .barrier) {
             self.mapObjects = array
             self.mapObjects.append(object)
@@ -152,6 +162,7 @@ extension ViewModel: NMANavigationManagerDelegate {
         navigationManager.stop()
         NMAPositioningManager.sharedInstance().dataSource = nil
         removeRouteList()
-        appStateClosure?(.config)
+        appState = .config
+        appStateClosure?()
     }
 }

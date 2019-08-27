@@ -31,28 +31,32 @@ final class ViewController: UIViewController {
     }
     
     private func setupSignals() {
-        viewModel.appStateClosure = { [weak self] state in
+        viewModel.appStateClosure = { [weak self] in
             guard let strongSelf = self else { return }
-            if state == .route {
+            if strongSelf.viewModel.appState == .route {
                 strongSelf.setButton.isHidden = true
                 strongSelf.mapView.add(mapObjects: strongSelf.viewModel.getMapObjects)
             } else {
                 strongSelf.setButton.isHidden = false
                 strongSelf.mapView.remove(mapObjects: strongSelf.viewModel.getMapObjects)
-                strongSelf.setupObserver()
+                NotificationCenter.default.removeObserver(strongSelf)
             }
+            strongSelf.setupObserver()
         }
     }
     
     private func setupObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdatePosition), name: .NMAPositioningManagerDidUpdatePosition, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didUpdatePosition), name: .NMAPositioningManagerDidLosePosition, object: nil)
     }
     
     @objc private func didUpdatePosition() {
-        guard let c = viewModel.coordinates else { return }
-        mapView.set(geoCenter: c, zoomLevel: 13.25, animation: .none)
-        NotificationCenter.default.removeObserver(self)
+        guard let coordinates = NMAPositioningManager.sharedInstance().currentPosition?.coordinates else { return }
+        if viewModel.appState == .config {
+            mapView.set(geoCenter: coordinates, zoomLevel: 13.25, animation: .none)
+            NotificationCenter.default.removeObserver(self)
+        } else {
+            viewModel.trackMarkers(currentCoordinate: coordinates)
+        }
     }
     
     @objc private func setButtonAction() {
